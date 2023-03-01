@@ -2,37 +2,50 @@
 #define __BINARYTREE_H__
 
 #include <vector>
+#include <iostream>
 
-template <class T> class BinaryTree
+class BinaryTree
 {
 public:
     BinaryTree() {}
-    BinaryTree(const T& value) {this->value = value;}
+    BinaryTree(int value) {this->value = value;}
 
     virtual ~BinaryTree() {}
 
-    void AddChild(const T& child) {this->children.push_back(BinaryTree (child));}
-    void RemoveChild(const T& child)
+    void AddChild(int child) {this->children.push_back(BinaryTree (child));}
+    void RemoveChild(int child)
     {
         for( int i = 0; i < this->children.size(); i++)
         {
-            if( this->children[i] == child)
+            if( this->children[i].value == child)
             {
-                this.children.erase(this->children.begin+i);
+                this->children.erase(this->children.begin()+i);
                 return;
             }
         }
     }
 
     void SetValue(int value) {this->value = value;}
-    T& GetValue() {return this->value;}
+    int GetValue() {return this->value;}
 
     std::vector<BinaryTree>& GetChildren() {return this->children;}
 
-    void Print();
+    void Print(int depth)
+    {
+        for ( int i = 0 ; i < depth ; ++i )
+        {
+            if ( i != depth-1 ) std::cout << "    ";
+            else std::cout << "|-- ";
+        }
+        std::cout << this->value << std::endl;
+        for ( uint i = 0 ; i < this->children.size() ; ++i )
+        {
+            this->children.at(i).Print( depth+1 );
+        }
+    }
 
 private:
-    T value;
+    int value;
     std::vector<BinaryTree> children;
 };
 
