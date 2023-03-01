@@ -1,5 +1,6 @@
 
 #include "BinaryTree.hpp"
+#include "BinaryTreeTemplate.hpp"
 
 int main( int argc , char* argv[] )
 {
