@@ -4,7 +4,18 @@ project(Board VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17) #or whatever
 
-# Library - unused
+# Library
+#set(LIBRARY BinaryTree.cpp)
+#add_library(BinaryTree STATIC ${LIBRARY})
+
+
+# for debugging
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/file1.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/file2.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/file3.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
+
+
 
 # application
-add_executable(main main.cpp)
+add_executable(main.o main.cpp)
