@@ -30,7 +30,19 @@ public:
 
     std::vector<BinaryTreeTemplate>& GetChildren() {return this->children;}
 
-    void Print();
+    void Print(int depth)
+    {
+        for ( int i = 0 ; i < depth ; ++i )
+        {
+            if ( i != depth-1 ) std::cout << "    ";
+            else std::cout << "|-- ";
+        }
+        std::cout << this->value << std::endl;
+        for ( uint i = 0 ; i < this->children.size() ; ++i )
+        {
+            this->children.at(i).Print( depth+1 );
+        }
+    }
 
 private:
     T value;

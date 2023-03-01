@@ -9,6 +9,9 @@ set(LIBRARY BinaryTree.hpp)
 add_library(BinaryTree STATIC ${LIBRARY})
 set_target_properties(BinaryTree PROPERTIES LINKER_LANGUAGE CXX)
 
+set(LIBRARY BinaryTreeTemplate.hpp)
+add_library(BinaryTreeTemplate STATIC ${LIBRARY})
+set_target_properties(BinaryTreeTemplate PROPERTIES LINKER_LANGUAGE CXX)
 
 # for debugging
 #file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/file1.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
@@ -17,5 +20,5 @@ set_target_properties(BinaryTree PROPERTIES LINKER_LANGUAGE CXX)
 
 
 # application
-add_executable(main main.cpp)
-target_link_libraries(main BinaryTree)
+add_executable(main.o main.cpp)
+target_link_libraries(main.o BinaryTree BinaryTreeTemplate)
