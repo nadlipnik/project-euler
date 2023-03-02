@@ -1,3 +1,6 @@
+#ifndef __PLAYER_H__
+#define __PLAYER_H__
+
 #include <vector>
 
 #define CLUB 1
@@ -28,3 +31,5 @@ private:
     std::vector<Card> hand;
 
 };
+
+#endif // __PLAYER_H__

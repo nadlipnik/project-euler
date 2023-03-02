@@ -5,8 +5,8 @@ project(Board VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17) #or whatever
 
 # Library
-#set(LIBRARY BinaryTree.cpp)
-#add_library(BinaryTree STATIC ${LIBRARY})
+set(LIBRARY Player.cpp)
+add_library(Player STATIC ${LIBRARY})
 
 
 # for debugging
@@ -14,3 +14,4 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/file1.txt DESTINATION ${CMAKE_CURRENT_BINA
 
 # application
 add_executable(main.o main.cpp)
+target_link_libraries(main.o Player)

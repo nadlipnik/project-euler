@@ -8,10 +8,38 @@
 
 int getCardValue(char value)
 {
-
+    switch(value)
+    {
+        case 'T': return 10;
+        case 'J': return 11;
+        case 'Q': return 12;
+        case 'K': return 13;
+        case 'A': return 14;
+        default:
+        {
+            return ((int) value - 0x30);
+        }
+    }
 }
 
-void read_input(std::string filename, std::vector<std::vector<int>>& values, std::vector<Player>& players)
+int getCardSuit(char suit)
+{
+    switch (suit)
+    {
+        case 'C':
+            return CLUB;
+        case 'D':
+            return DIAMOND;
+        case 'H':
+            return HEART;
+        case 'S':
+            return SPADE;
+        default:
+            return -1;
+    }
+}
+
+void read_input(std::string filename, std::vector<Player>& players)
 {
     // reading the input file
     std::fstream newfile;
@@ -23,7 +51,7 @@ void read_input(std::string filename, std::vector<std::vector<int>>& values, std
     Player player;
     Player::Card card;
 
-    std::string element = 0;
+    std::string element;
 
     while(getline(newfile, line))
     {
@@ -44,5 +72,7 @@ void read_input(std::string filename, std::vector<std::vector<int>>& values, std
 int main()
 {
     std::vector<Player> players;
+
+    read_input("file1.txt", players);
     return 0;
 }
