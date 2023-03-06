@@ -57,11 +57,22 @@ void read_input(std::string filename, std::vector<Player>& players)
     {
         _stream << line;
         int i = 0;
+        int j = 0;
         while(_stream >> element)
         {
             card.value = getCardValue(element[0]);
             card.suit = getCardSuit(element[1]);
             player.AddCard(card);
+            i++;
+            if (i == 5)
+            {
+                i = 0;
+                player.SortHand();
+                players.push_back(player);
+                player.RemoveHand();
+                //players[j].SetHand(player.GetHand());
+                //j++;
+            }
         }
         _stream.str("");
         _stream.clear();
@@ -72,6 +83,7 @@ void read_input(std::string filename, std::vector<Player>& players)
 int main()
 {
     std::vector<Player> players;
+    int player1_wins = 0;
 
     read_input("file1.txt", players);
     return 0;
