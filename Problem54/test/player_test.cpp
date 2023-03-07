@@ -1,6 +1,6 @@
 #include "gtest/gtest.h"
 #include "Player.hpp"
-#include "main.c"
+#include "main.cpp"
 
 TEST(TestHands, Pair)
 {
@@ -11,7 +11,12 @@ TEST(TestHands, Pair)
     read_input("file1.txt", players);
 
     // get hand value of first player
-    
+    players[0].GetHandValue();
+    players[1].GetHandValue();
+    players[2].GetHandValue();
+    players[3].GetHandValue();
+    players[4].GetHandValue();
+    players[5].GetHandValue();
 }
 
 GTEST_API_ int main(int argc, char **argv)

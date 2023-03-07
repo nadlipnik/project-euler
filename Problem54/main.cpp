@@ -79,7 +79,7 @@ void read_input(std::string filename, std::vector<Player>& players)
     }
 }
 
-
+/*
 int main()
 {
     std::vector<Player> players;
@@ -88,3 +88,4 @@ int main()
     read_input("file1.txt", players);
     return 0;
 }
+*/

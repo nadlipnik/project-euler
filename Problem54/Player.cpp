@@ -49,10 +49,6 @@ void Player::GetHandValue()
     {
         value = STRAIGHT;
     }
-
-
-    hand_value = value;
-    high_card = card;
 }
 
 void Player::SortHand()

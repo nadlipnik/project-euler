@@ -19,8 +19,8 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/file1.txt DESTINATION ${CMAKE_CURRENT_BINA
 
 # main application
 find_package(GTest REQUIRED)
-add_executable(main.o main.cpp)
-target_link_libraries(main.o Player)
+#add_executable(main.o main.cpp)
+#target_link_libraries(main.o Player)
 
 # test application
 include_directories("${CMAKE_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}/test")
