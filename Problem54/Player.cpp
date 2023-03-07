@@ -32,22 +32,26 @@ void Player::RemoveHand()
 
 void Player::GetHandValue()
 {
-    int value = 0;
-    int card = 0;
     // check straight flush
 
-    // check for four of a kind
     if(IsFourOfAKind())
-    {
-        value = FOUR_OF_A_KIND;
-    }
-
-    // check for full house
-
-    // check for straight
+        return;
+    else if(IsFullHouse())
+        return;
+    else if(IsFlush())
+        return;
     else if(IsStraight())
+        return;
+    else if(IsThreeOfAKind())
+        return;
+    else if(IsTwoPairs())
+        return;
+    else if(IsPair())
+        return;
+    else // high card
     {
-        value = STRAIGHT;
+        high_card = std::max({hand[0].value, hand[1].value, hand[2].value, hand[3].value, hand[4].value});
+        return;
     }
 }
 
@@ -84,7 +88,7 @@ bool Player::IsTwoPairs()
     {
         if (hand[i].value == hand[i+1].value)
         {
-            for(int j = i+2; j <= size-2; i++)
+            for(int j = i+2; j <= size-2; j++)
             {
                 if(hand[j].value == hand[j+1].value)
                 {
