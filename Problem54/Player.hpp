@@ -40,14 +40,18 @@ public:
     void AddCard(Card card);
     void RemoveHand();
 
-    int GetHandValue();
+    void GetHandValue();
 
     void SortHand();
+
+    int hand_value = 0;
+    int high_card = 0;
 
 private:
 
     std::vector<Card> hand;
 
+    
     bool IsPair();
     bool IsTwoPairs();
     bool IsThreeOfAKind();

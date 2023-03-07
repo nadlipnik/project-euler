@@ -7,6 +7,11 @@ set(CMAKE_CXX_STANDARD 17) #or whatever
 # Library
 set(LIBRARY Player.cpp)
 add_library(Player STATIC ${LIBRARY})
+#target_include_directories(Player PRIVATE .)
+
+set(LIBRARY main.cpp)
+add_library(Main STATIC ${LIBRARY})
+#target_include_directories(Main PRIVATE .)
 
 
 # for debugging
@@ -18,9 +23,10 @@ add_executable(main.o main.cpp)
 target_link_libraries(main.o Player)
 
 # test application
-add_executable(test_hands.o test/player_test.cpp)
-target_include_directories(test_hands.o PRIVATE GTEST_INCLUDE_DIRS lib_board)
-target_link_libraries(test_hands.o Player GTest::gtest GTest::gtest_main)
+include_directories("${CMAKE_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}/test")
+add_executable(player_test.o test/player_test.cpp)
+target_include_directories(player_test.o PRIVATE GTEST_INCLUDE_DIRS Player Main)
+target_link_libraries(player_test.o Main Player GTest::gtest GTest::gtest_main)
 
 
-add_test(GAME test_hands.o)
+add_test(GAME player_test.o)
