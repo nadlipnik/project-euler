@@ -2,6 +2,7 @@
 #include <vector>
 #include <sstream>
 #include <fstream>
+#include <iostream>
 
 
 #include "Player.hpp"
@@ -79,13 +80,24 @@ void read_input(std::string filename, std::vector<Player>& players)
     }
 }
 
-/*
+
 int main()
 {
     std::vector<Player> players;
     int player1_wins = 0;
 
     read_input("file1.txt", players);
+
+    // get hand value of players
+    for(int i = 0; i < players.size(); i+=2)
+    {
+        players[i].GetHandValue();
+        players[i+1].GetHandValue();
+
+        if (players[i].DetermineWinner(players[i+1]))
+            player1_wins++;
+    }
+    std::cout << "Player 1 wins " << player1_wins << " games!" << std::endl;
+
     return 0;
 }
-*/

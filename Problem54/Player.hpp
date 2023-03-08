@@ -30,7 +30,7 @@ public:
         int suit;
 
         // used for sorting
-        bool operator < (const Card & card) {return value < card.value;}
+        bool operator < (const Card & card) { return value < card.value; }
     };
 
     void SetHand(const std::vector<Card> &cards);
@@ -44,14 +44,21 @@ public:
 
     void SortHand();
 
-    int hand_value = 0;
-    int high_card = 0;
+    int GetHandRank() { return hand_value; }
+    int GetHighCard() { return high_card; }
+    int GetHighestCard() { return highest_card; }
+
+    bool DetermineWinner(Player &player2);
 
 private:
 
     std::vector<Card> hand;
+    int hand_value = 0;
+    int high_card = 0;
+    int highest_card = 0;
 
-    
+    int games_won = 0;
+
     bool IsPair();
     bool IsTwoPairs();
     bool IsThreeOfAKind();
@@ -59,6 +66,7 @@ private:
     bool IsFlush();
     bool IsFullHouse();
     bool IsFourOfAKind();
+    bool IsStraightFlush();
 
 };
 

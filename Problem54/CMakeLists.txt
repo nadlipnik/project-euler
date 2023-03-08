@@ -16,17 +16,17 @@ add_library(Main STATIC ${LIBRARY})
 
 # for debugging
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/file1.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/file2.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 # main application
 find_package(GTest REQUIRED)
-#add_executable(main.o main.cpp)
-#target_link_libraries(main.o Player)
+add_executable(main.o main.cpp)
+target_link_libraries(main.o Player)
 
 # test application
-include_directories("${CMAKE_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}/test")
-add_executable(player_test.o test/player_test.cpp)
-target_include_directories(player_test.o PRIVATE GTEST_INCLUDE_DIRS Player Main)
-target_link_libraries(player_test.o Main Player GTest::gtest GTest::gtest_main)
+#include_directories("${CMAKE_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}/test")
+#add_executable(player_test.o test/player_test.cpp)
+#target_include_directories(player_test.o PRIVATE GTEST_INCLUDE_DIRS Player Main)
+#target_link_libraries(player_test.o Main Player GTest::gtest GTest::gtest_main)
 
-
-add_test(GAME player_test.o)
+#add_test(GAME player_test.o)

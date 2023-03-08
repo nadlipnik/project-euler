@@ -34,6 +34,8 @@ void Player::GetHandValue()
 {
     // check straight flush
 
+    if(IsStraightFlush())
+        return;
     if(IsFourOfAKind())
         return;
     else if(IsFullHouse())
@@ -50,6 +52,8 @@ void Player::GetHandValue()
         return;
     else // high card
     {
+        if(hand.size() < 5)
+            return;
         high_card = std::max({hand[0].value, hand[1].value, hand[2].value, hand[3].value, hand[4].value});
         return;
     }
@@ -62,6 +66,7 @@ void Player::SortHand()
 
 bool Player::IsPair()
 {
+    std::vector<Card> tmp = hand;
     int size = hand.size();
     if (size < 2)
         return false;
@@ -71,6 +76,9 @@ bool Player::IsPair()
         {
             hand_value = PAIR;
             high_card = hand[i].value;
+            tmp.erase(tmp.begin()+i);
+            tmp.erase(tmp.begin()+i);
+            highest_card = std::max({tmp[0].value, tmp[1].value, tmp[2].value});
             return true;
         }
     }
@@ -171,7 +179,7 @@ bool Player::IsFullHouse()
             hand[i+3].value == hand[i+4].value)
         {
             hand_value = FULL_HOUSE;
-            high_card = std::max({hand[0].value, hand[1].value, hand[2].value, hand[3].value, hand[4].value});
+            high_card = hand[i].value;
             return true;
         }
         else if (hand[i].value == hand[i+1].value && 
@@ -179,7 +187,7 @@ bool Player::IsFullHouse()
             hand[i+2].value == hand[i+4].value)
         {
             hand_value = FULL_HOUSE;
-            high_card = std::max({hand[0].value, hand[1].value, hand[2].value, hand[3].value, hand[4].value});
+            high_card = hand[i+2].value;
             return true;
         }
     }
@@ -197,9 +205,44 @@ bool Player::IsFourOfAKind()
         if (hand[i].value == hand[i+1].value && 
             hand[i].value == hand[i+2].value && 
             hand[i].value == hand[i+3].value)
+        {
+            hand_value = FOUR_OF_A_KIND;
+            high_card = hand[i].value;
             return true;
+        }
     }
     
+    return false;
+}
+
+bool Player::IsStraightFlush()
+{
+    if (hand.size() < 5)
+        return false;
+    if(IsStraight() && IsFlush())
+    {
+        hand_value = STRAIGHT_FLUSH;
+        high_card = hand[5].value;
+        return true;
+    }
+    return false;
+}
+
+bool Player::DetermineWinner(Player &player2)
+{
+    if(hand_value > player2.GetHandRank())
+        return true;
+    else if(hand_value == player2.GetHandRank())
+    {
+        if(high_card > player2.GetHighCard())
+            return true;
+        else if(high_card == player2.GetHighCard())
+        {
+            // if the one where we are deciding is the same
+            if (highest_card > player2.GetHighestCard())
+                return true;
+        }
+    }
     return false;
 }
 
